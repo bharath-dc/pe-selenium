@@ -29,9 +29,28 @@ def initial_login():
         remark = str(e)
     return initial_login.__name__, result, remark
 
-def drop_doc():
+class TestDropdocument():
+  def setup_method(self, method):
+    self.driver = webdriver.Firefox()
+    self.vars = {}
+  
+  def teardown_method(self, method):
+    self.driver.quit()
+  
+  def test_dropdocument(self):
+    self.driver.get("http://deepcognition10.ydns.eu:12622/#/")
+    self.driver.set_window_size(983, 743)
+    self.driver.find_element(By.CSS_SELECTOR, "#vertical-menu-btn > .fa").click()
+    self.driver.find_element(By.CSS_SELECTOR, ".uil-files-landscapes").click()
+    self.driver.find_element(By.CSS_SELECTOR, ".btn-primary").click()
+    element = self.driver.find_element(By.CSS_SELECTOR, ".btn-primary")
+    actions = ActionChains(self.driver)
+    actions.move_to_element(element).perform()
+    element = self.driver.find_element(By.CSS_SELECTOR, "body")
+    actions = ActionChains(self.driver)
+    actions.move_to_element(element, 0, 0).perform()
     #drops document
-def validator_test():
+# def validator_test():
     #checks functions in validator
 # Writing results to a report
 with open('test_report.csv', 'w', newline='') as file:
