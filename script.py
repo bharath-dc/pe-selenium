@@ -27,14 +27,18 @@ def initial_login():
     except Exception as e:
         result = "Fail"
         remark = str(e)
-    return result, remark
+    return initial_login.__name__, result, remark
 
+def drop_doc():
+    #drops document
+def validator_test():
+    #checks functions in validator
 # Writing results to a report
 with open('test_report.csv', 'w', newline='') as file:
     writer = csv.writer(file)
     writer.writerow(['Function Tested', 'Result', 'Remarks'])
-    result, remark = initial_login()
-    writer.writerow(['Feature Name', result, remark])
+    function_name, result, remark = initial_login()
+    writer.writerow([function_name, result, remark])
 
 # Close the browser
 driver.quit()
