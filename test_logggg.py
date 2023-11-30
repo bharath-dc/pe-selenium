@@ -78,16 +78,18 @@ class TestLogggg():
     self.driver.find_element(By.CSS_SELECTOR, "option:nth-child(2)").click()
     # self.driver.find_element(By.CSS_SELECTOR, ".text-white").click()
 
-    self.driver.find_element(By.CSS_SELECTOR, ".input-file").click()
-    self.driver.find_element(By.CSS_SELECTOR, ".input-file").send_keys(r'docs\invoice_radar_jcb.pdf')
+    self.driver.find_element(By.XPATH, '/html/body/div/div/div/div/div[2]/div/div/div/div[4]/div/div/div[2]/div[1]').click()
+    time.sleep(10)
+    self.driver.find_element(By.CSS_SELECTOR, '.input-file').send_keys(r'C:\Users\bhara\Desktop\selenium_PE\docs\invoice_radar_jcb.pdf')
     self.driver.find_element(By.CSS_SELECTOR, ".w-md").click()
     # self.fill_form()
+    time.sleep(10)
   
-    # self.driver.switch_to.frame(0)
-    # self.vars["window_handles"] = self.driver.window_handles
-    # self.driver.find_element(By.LINK_TEXT, "http://deepcognition4.ydns.eu:15002/validate?task_id=1701251952739").click()
-    # self.vars["win4226"] = self.wait_for_window(2000)
-    # self.vars["root"] = self.driver.current_window_handle
-    # self.driver.switch_to.window(self.vars["win4226"])
-    # self.driver.switch_to.window(self.vars["root"])
+    self.driver.switch_to.frame(0)
+    self.vars["window_handles"] = self.driver.window_handles
+    self.driver.find_element(By.LINK_TEXT, "http://deepcognition4.ydns.eu:15002/validate?task_id=1701251952739").click()
+    self.vars["win4226"] = self.wait_for_window(2000)
+    self.vars["root"] = self.driver.current_window_handle
+    self.driver.switch_to.window(self.vars["win4226"])
+    self.driver.switch_to.window(self.vars["root"])
   
