@@ -75,21 +75,62 @@ class TestLogggg():
     self.driver.find_element(By.CSS_SELECTOR, ".form-select").click()
     dropdown = self.driver.find_element(By.CSS_SELECTOR, ".form-select")
     dropdown.find_element(By.XPATH, "//option[. = 'Commercial Invoice']").click()
-    self.driver.find_element(By.CSS_SELECTOR, "option:nth-child(2)").click()
+    self.driver.find_element(By.CSS_SELECTOR, "option:nth-child(3)").click()
     # self.driver.find_element(By.CSS_SELECTOR, ".text-white").click()
 
     self.driver.find_element(By.XPATH, '/html/body/div/div/div/div/div[2]/div/div/div/div[4]/div/div/div[2]/div[1]').click()
     time.sleep(10)
-    self.driver.find_element(By.CSS_SELECTOR, '.input-file').send_keys(r'C:\Users\bhara\Desktop\selenium_PE\docs\invoice_radar_jcb.pdf')
+    self.driver.find_element(By.CSS_SELECTOR, '.input-file').send_keys(r'C:\Users\Himanshu\Documents\pe-selenium\docs\invoice_radar_jcb.pdf')
     self.driver.find_element(By.CSS_SELECTOR, ".w-md").click()
     # self.fill_form()
     time.sleep(10)
-  
     self.driver.switch_to.frame(0)
-    self.vars["window_handles"] = self.driver.window_handles
-    self.driver.find_element(By.LINK_TEXT, "http://deepcognition4.ydns.eu:15002/validate?task_id=1701251952739").click()
-    self.vars["win4226"] = self.wait_for_window(2000)
-    self.vars["root"] = self.driver.current_window_handle
-    self.driver.switch_to.window(self.vars["win4226"])
-    self.driver.switch_to.window(self.vars["root"])
+    while True:
+        try:
+            # Find the element and click it
+            self.driver.find_element(By.CSS_SELECTOR, ".mdi-reload").click()
+
+            # Wait for 30 seconds before the next click
+            time.sleep(30)
+
+        except Exception as e:
+            print(f"An error occurred: {e}")    
+
   
+        # self.driver.switch_to.frame(0)
+        # self.vars["window_handles"] = self.driver.window_handles
+        # self.driver.find_element(By.LINK_TEXT, "http://deepcognition4.ydns.eu:15002/validate?task_id=1701342289075").click()
+        # self.vars["win4226"] = self.wait_for_window(2000)
+        # self.vars["root"] = self.driver.current_window_handle
+        # self.driver.switch_to.window(self.vars["win4226"])
+        # # self.driver.switch_to.window(self.vars["root"])
+
+
+    # self.driver.find_element(By.CSS_SELECTOR, ".dropdown-toggle:nth-child(2)").click()
+    # WebDriverWait(self.driver, 30).until(
+    #     EC.presence_of_element_located((By.CSS_SELECTOR, '.sliderWrapper:nth-child(1) .slider'))
+    # )
+    # self.driver.find_element(By.CSS_SELECTOR, ".sliderWrapper:nth-child(1) .slider").click()
+    # self.driver.find_element(By.ID, "runcheck-btn1").click()
+    # self.driver.find_element(By.CSS_SELECTOR, ".dropdown-toggle:nth-child(2)").click()
+    # self.driver.find_element(By.CSS_SELECTOR, ".sliderWrapper:nth-child(2) .slider").click()
+    # WebDriverWait(self.driver, 30).until(
+    #     EC.presence_of_element_located((By.CSS_SELECTOR, ".sliderWrapper:nth-child(3) .slider"))
+    # )
+    # self.driver.find_element(By.CSS_SELECTOR, ".sliderWrapper:nth-child(3) .slider").click()
+    # self.driver.find_element(By.ID, "runcheck-btn1").click()
+    # self.driver.find_element(By.CSS_SELECTOR, "#check_status_text > .badge").click()
+    # self.driver.find_element(By.CSS_SELECTOR, ".jsPanel-btn-close > .jsPanel-icon").click()
+    # self.driver.find_element(By.CSS_SELECTOR, "#check_status_text > .badge").click()
+    # self.driver.find_element(By.CSS_SELECTOR, ".jsPanel-btn-close > .jsPanel-icon").click()
+    # self.driver.find_element(By.CSS_SELECTOR, "#publish_status_text > .badge").click()
+    # self.driver.find_element(By.CSS_SELECTOR, ".jsPanel-btn-close path").click()
+    # self.driver.find_element(By.ID, "line-item-btn").click()
+    # self.driver.find_element(By.ID, "line-item-btn").click()
+    # self.driver.find_element(By.CSS_SELECTOR, ".nav").click()
+    # self.driver.find_element(By.ID, "btnGroupDrop1").click()
+    # self.driver.find_element(By.ID, "btnGroupDrop1").click()
+    # self.driver.find_element(By.ID, "btnGroupDrop1").click()
+    # self.driver.find_element(By.ID, "export-btn").click()
+    # self.driver.find_element(By.CSS_SELECTOR, ".svgclass > svg").click()   
+
