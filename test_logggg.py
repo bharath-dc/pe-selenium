@@ -11,6 +11,8 @@ from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.common.keys import Keys
 from selenium.webdriver.common.desired_capabilities import DesiredCapabilities
 from selenium.webdriver.support.ui import Select
+from selenium.common.exceptions import NoSuchElementException, TimeoutException
+
 
 
 class TestLogggg():
@@ -46,7 +48,7 @@ class TestLogggg():
   
   def test_logggg(self):
     self.driver.get("http://deepcognition4.ydns.eu:15002/accounts/login/?next=/")
-    self.driver.set_window_size(1445, 759)
+    self.driver.set_window_size(1936, 1048)
     self.driver.find_element(By.ID, "id_username").click()
     self.driver.find_element(By.ID, "id_username").send_keys("admin@deepcognition.ai")
     self.driver.find_element(By.ID, "id_password").send_keys("Admin@1234")
@@ -71,39 +73,81 @@ class TestLogggg():
     except Exception as e:
         print("Page did not load after login.")
     self.driver.switch_to.default_content()   
-    self.driver.find_element(By.XPATH, '/html/body/div/div/div/div/div[2]/div/div/div/div[1]/div/div[2]/div/button').click()
-    self.driver.find_element(By.CSS_SELECTOR, ".form-select").click()
-    dropdown = self.driver.find_element(By.CSS_SELECTOR, ".form-select")
-    dropdown.find_element(By.XPATH, "//option[. = 'Commercial Invoice']").click()
-    self.driver.find_element(By.CSS_SELECTOR, "option:nth-child(3)").click()
-    # self.driver.find_element(By.CSS_SELECTOR, ".text-white").click()
+    # self.driver.find_element(By.XPATH, '/html/body/div/div/div/div/div[2]/div/div/div/div[1]/div/div[2]/div/button').click()
+    # self.driver.find_element(By.CSS_SELECTOR, ".form-select").click()
+    # dropdown = self.driver.find_element(By.CSS_SELECTOR, ".form-select")
+    # dropdown.find_element(By.XPATH, "//option[. = 'Commercial Invoice']").click()
+    # self.driver.find_element(By.CSS_SELECTOR, "option:nth-child(3)").click()
+    # # self.driver.find_element(By.CSS_SELECTOR, ".text-white").click()
 
-    self.driver.find_element(By.XPATH, '/html/body/div/div/div/div/div[2]/div/div/div/div[4]/div/div/div[2]/div[1]').click()
-    time.sleep(10)
-    self.driver.find_element(By.CSS_SELECTOR, '.input-file').send_keys(r'C:\Users\Himanshu\Documents\pe-selenium\docs\invoice_radar_jcb.pdf')
-    self.driver.find_element(By.CSS_SELECTOR, ".w-md").click()
-    # self.fill_form()
-    time.sleep(10)
+    # self.driver.find_element(By.XPATH, '/html/body/div/div/div/div/div[2]/div/div/div/div[4]/div/div/div[2]/div[1]').click()
+    # time.sleep(10)
+    # self.driver.find_element(By.CSS_SELECTOR, '.input-file').send_keys(r'C:\Users\Himanshu\Documents\pe-selenium\docs\invoice_radar_jcb.pdf')
+    # self.driver.find_element(By.CSS_SELECTOR, ".w-md").click()
+    # # self.fill_form()
+    # time.sleep(10)
+    # self.driver.switch_to.frame(0)
+    # while True:
+    #     try:
+    #         # Find the element and click it
+    #         status_element = self.driver.find_element(By.XPATH, '/html/body/div[1]/div/div/div[1]/main/div/div/div[2]/div/div[3]/div/div[1]/div[2]/div/div/div/div/div/div[2]/div/div/div/div[1]/div/div[1]/div/table/tbody/tr[1]/td[10]/div/div/span')
+    #         if status_element.text == "Processed":
+    #             # Click on the link if the status is 'Processed'
+    #             link_element = self.driver.find_element(By.XPATH, '/html/body/div[1]/div/div/div[1]/main/div/div/div[2]/div/div[3]/div/div[1]/div[2]/div/div/div/div/div/div[2]/div/div/div/div[1]/div/div[1]/div/table/tbody/tr[1]/td[11]/a')
+    #             link_element.click()
+    #             break
+    #         else:
+    #             self.driver.find_element(By.CSS_SELECTOR, ".mdi-reload").click()
+
+    #             print("Status is not 'Processed'.")
+    #         # Wait for 30 seconds before the next click
+    #         time.sleep(30)
+
+    #     except Exception as e:
+    #         print(f"An error occurred: {e}") 
     self.driver.switch_to.frame(0)
     while True:
         try:
-            # Find the element and click it
-            self.driver.find_element(By.CSS_SELECTOR, ".mdi-reload").click()
+            # Find the status element
+            status_element = self.driver.find_element(By.XPATH, '/html/body/div[1]/div/div/div[1]/main/div/div/div[2]/div/div[3]/div/div[1]/div[2]/div/div/div/div/div/div[2]/div/div/div/div[1]/div/div[1]/div/table/tbody/tr[1]/td[10]/div/div/span')
+            if status_element.text == "Processed":
+                # Click on the link if the status is 'Processed'
+                link_element = self.driver.find_element(By.XPATH, '/html/body/div[1]/div/div/div[1]/main/div/div/div[2]/div/div[3]/div/div[1]/div[2]/div/div/div/div/div/div[2]/div/div/div/div[1]/div/div[1]/div/table/tbody/tr[1]/td[11]/a')
 
-            # Wait for 30 seconds before the next click
+                # Click the link (which should open a new window)
+                link_element.click()
+                
+
+                        
+
+
+                # Perform your actions in the new window
+                # ...
+
+                # Close the new window and switch back to the original window, if necessary
+                # self.driver.close()
+                # self.driver.switch_to.window(original_window)
+
+            else:
+                print("Status is not 'Processed'. Reloading...")
+                self.driver.find_element(By.CSS_SELECTOR, ".mdi-reload").click()
+
+            # Wait for 30 seconds before the next check
             time.sleep(30)
 
         except Exception as e:
             print(f"An error occurred: {e}")    
+    
+           
 
   
-        # self.driver.switch_to.frame(0)
-        # self.vars["window_handles"] = self.driver.window_handles
-        # self.driver.find_element(By.LINK_TEXT, "http://deepcognition4.ydns.eu:15002/validate?task_id=1701342289075").click()
-        # self.vars["win4226"] = self.wait_for_window(2000)
-        # self.vars["root"] = self.driver.current_window_handle
-        # self.driver.switch_to.window(self.vars["win4226"])
-        # # self.driver.switch_to.window(self.vars["root"])
+    # self.driver.switch_to.frame(0)
+    # self.vars["window_handles"] = self.driver.window_handles
+    # self.driver.get(link_element)
+    # self.vars["win4226"] = self.wait_for_window(2000)
+    # self.vars["root"] = self.driver.current_window_handle
+    # self.driver.switch_to.window(self.vars["win4226"])
+    # # self.driver.switch_to.window(self.vars["root"])
 
 
     # self.driver.find_element(By.CSS_SELECTOR, ".dropdown-toggle:nth-child(2)").click()
