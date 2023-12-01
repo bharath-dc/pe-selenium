@@ -16,7 +16,7 @@ class TestVali:
 
     def initial_login(self):
         # Method for initial login
-        self.driver.get("http://deepcognition10.ydns.eu:12622")
+        self.driver.get("http://deepcognition4.ydns.eu:15002")
         self.driver.find_element(By.ID, "id_username").send_keys("admin@deepcognition.ai")
         self.driver.find_element(By.ID, "id_password").send_keys("Admin@1234")
         self.driver.find_element(By.CSS_SELECTOR, ".btn").click()
@@ -27,10 +27,10 @@ class TestVali:
 
     def test_validate(self):
         # Main test method
-        self.driver.get("http://deepcognition10.ydns.eu:12622")
+        self.driver.get("http://deepcognition4.ydns.eu:15002")
         self.initial_login()
         # Navigate to a specific page
-        self.driver.get("http://deepcognition10.ydns.eu:12622/validate?task_id=1700805280458")
+        self.driver.get("http://deepcognition4.ydns.eu:15002/validate?task_id=1701409514688")
         self.driver.set_window_size(1589, 834)
 
         # Interacting with various elements on the page
