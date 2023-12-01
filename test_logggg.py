@@ -113,31 +113,56 @@ class TestLogggg():
             if status_element.text == "Processed":
                 # Click on the link if the status is 'Processed'
                 link_element = self.driver.find_element(By.XPATH, '/html/body/div[1]/div/div/div[1]/main/div/div/div[2]/div/div[3]/div/div[1]/div[2]/div/div/div/div/div/div[2]/div/div/div/div[1]/div/div[1]/div/table/tbody/tr[1]/td[11]/a')
-
-                # Click the link (which should open a new window)
+                original_window = self.driver.current_window_handle
                 link_element.click()
-                
 
-                        
+                # Wait for the new window or tab to open
+                WebDriverWait(self.driver, 10).until(EC.number_of_windows_to_be(2))
 
-
-                # Perform your actions in the new window
-                # ...
+                # Switch to the new window
+                for window_handle in self.driver.window_handles:
+                    if window_handle != original_window:
+                        self.driver.switch_to.window(window_handle)
+                        self.driver.find_element(By.CSS_SELECTOR, ".dropdown-toggle:nth-child(2)").click()
+                        WebDriverWait(self.driver, 30).until(
+                            EC.presence_of_element_located((By.CSS_SELECTOR, '.sliderWrapper:nth-child(1) .slider'))
+                        )
+                        self.driver.find_element(By.CSS_SELECTOR, ".sliderWrapper:nth-child(1) .slider").click()
+                        self.driver.find_element(By.ID, "runcheck-btn1").click()
+                        self.driver.find_element(By.CSS_SELECTOR, ".dropdown-toggle:nth-child(2)").click()
+                        self.driver.find_element(By.CSS_SELECTOR, ".sliderWrapper:nth-child(2) .slider").click()
+                        WebDriverWait(self.driver, 30).until(
+                            EC.presence_of_element_located((By.CSS_SELECTOR, ".sliderWrapper:nth-child(3) .slider"))
+                        )
+                        self.driver.find_element(By.CSS_SELECTOR, ".sliderWrapper:nth-child(3) .slider").click()
+                        self.driver.find_element(By.ID, "runcheck-btn1").click()
+                        self.driver.find_element(By.CSS_SELECTOR, "#check_status_text > .badge").click()
+                        self.driver.find_element(By.CSS_SELECTOR, ".jsPanel-btn-close > .jsPanel-icon").click()
+                        self.driver.find_element(By.CSS_SELECTOR, "#check_status_text > .badge").click()
+                        self.driver.find_element(By.CSS_SELECTOR, ".jsPanel-btn-close > .jsPanel-icon").click()
+                        self.driver.find_element(By.CSS_SELECTOR, "#publish_status_text > .badge").click()
+                        self.driver.find_element(By.CSS_SELECTOR, ".jsPanel-btn-close path").click()
+                        self.driver.find_element(By.ID, "line-item-btn").click()
+                        self.driver.find_element(By.ID, "line-item-btn").click()
+                        self.driver.find_element(By.CSS_SELECTOR, ".nav").click()
+                        self.driver.find_element(By.ID, "btnGroupDrop1").click()
+                        self.driver.find_element(By.ID, "btnGroupDrop1").click()
+                        self.driver.find_element(By.ID, "btnGroupDrop1").click()
+                        self.driver.find_element(By.ID, "export-btn").click()
 
                 # Close the new window and switch back to the original window, if necessary
-                # self.driver.close()
-                # self.driver.switch_to.window(original_window)
+            # self.driver.close()
+            # self.driver.switch_to.window(original_window)
 
             else:
                 print("Status is not 'Processed'. Reloading...")
                 self.driver.find_element(By.CSS_SELECTOR, ".mdi-reload").click()
 
-            # Wait for 30 seconds before the next check
             time.sleep(30)
 
         except Exception as e:
-            print(f"An error occurred: {e}")    
-    
+            print(f"An error occurred: {e}")
+            break  # Or handle the error as needed
            
 
   
